@@ -42,7 +42,7 @@ import ProductReviews from "./components/Admin/ProductReviews";
 import Contact from "./components/layout/Contact/Contact";
 import About from "./components/layout/About/About";
 import NotFound from "./components/layout/Not Found/NotFound";
-import { server } from "./index";
+
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -50,7 +50,7 @@ function App() {
   const [stripeApiKey, setStripeApiKey] = useState("");
 
   async function getStripeApiKey() {
-    const { data } = await axios.get(`${server}/stripeapikey`);
+    const { data } = await axios.get(`/api/v1/stripeapikey`);
 
     setStripeApiKey(data.stripeApiKey);
   }
