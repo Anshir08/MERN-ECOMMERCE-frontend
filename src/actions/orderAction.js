@@ -13,7 +13,7 @@ export const createOrder = (order) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.post(`${server}/api/v1/order/new`, order, config);
+    const { data } = await axios.post(`${server}/order/new`, order, config);
 
     dispatch({ type: CREATE_ORDER_SUCCESS, payload: data});
   } catch (error) {
@@ -29,7 +29,7 @@ export const myOrders = () => async (dispatch) => {
   try {
     dispatch({ type: MY_ORDERS_REQUEST });
 
-    const { data } = await axios.get(`${server}/api/v1/orders/me`, {withCredentials:true});
+    const { data } = await axios.get(`${server}/orders/me`, {withCredentials:true});
 
     dispatch({ type: MY_ORDERS_SUCCESS, payload: data.orders });
   } catch (error) {
@@ -45,7 +45,7 @@ export const getAllOrders = () => async (dispatch) => {
   try {
     dispatch({ type: ALL_ORDERS_REQUEST});
 
-    const { data } = await axios.get(`${server}/api/v1/admin/orders`, {withCredentials:true});
+    const { data } = await axios.get(`${server}/admin/orders`, {withCredentials:true});
 
     dispatch({type: ALL_ORDERS_SUCCESS, payload: data.orders});
   } catch (error) {
@@ -68,7 +68,7 @@ export const updateOrder = (id, order) => async (dispatch) => {
       withCredentials: true,
     };
 
-    const { data } = await axios.put(`${server}/api/v1/admin/order/${id}`, order, config);
+    const { data } = await axios.put(`${server}/admin/order/${id}`, order, config);
 
     dispatch({ type: UPDATE_ORDER_SUCCESS, payload: data.success });
   } catch(error) {
@@ -84,7 +84,7 @@ export const deleteOrder = (id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_ORDER_REQUEST });
 
-    const { data } = await axios.delete(`${server}/api/v1/admin/order/${id}`, {withCredentials:true});
+    const { data } = await axios.delete(`${server}/admin/order/${id}`, {withCredentials:true});
 
     dispatch({ type: DELETE_ORDER_SUCCESS, payload: data.success });
   } catch (error) {
@@ -100,7 +100,7 @@ export const getOrderDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: ORDER_DETAILS_REQUEST});
 
-    const { data } = await axios.get(`${server}/api/v1/order/${id}`, {withCredentials:true});
+    const { data } = await axios.get(`${server}/order/${id}`, {withCredentials:true});
 
     dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data.order});
   } catch (error) {
