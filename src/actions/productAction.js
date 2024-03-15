@@ -54,7 +54,7 @@ export const createProduct = (productData) => async (dispatch) => {
     });
 
     const config = {
-      headers: { "Content-Type": "application/json", withCredentials:true },
+      headers: { "Content-Type": "multipart/form-data", withCredentials:true },
     };
 
     const { data } = await axios.post(
@@ -81,7 +81,7 @@ export const updateProduct = (id, productData) => async (dispatch) => {
     dispatch({ type: UPDATE_PRODUCT_REQUEST });
 
     const config = {
-      headers: { "Conent-Type": "application/json", withCredentials:true },
+      headers: { "Conent-Type": "multipart/form-data", withCredentials:true },
     };
 
     const { data } = await axios.put(
