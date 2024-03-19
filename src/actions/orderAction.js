@@ -9,8 +9,8 @@ export const createOrder = (order) => async (dispatch) => {
     const config = {
       headers: {
         "Content-Type": "application/json",
-        withCredentials: true,
       },
+      withCredentials: true,
     };
 
     const { data } = await axios.post(`${server}/order/new`, order, config);
