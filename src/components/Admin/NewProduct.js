@@ -13,7 +13,7 @@ import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import SideBar from "./Sidebar";
 import { NEW_PRODUCT_RESET } from "../../constants/productConstants";
 
-const NewProduct = ({history}) => {
+const NewProduct = ({ history }) => {
   const dispatch = useDispatch();
   const alert = useAlert();
 
@@ -40,14 +40,14 @@ const NewProduct = ({history}) => {
   useEffect(() => {
     if (error) {
       alert.error(error);
-      dispatch(clearErrors);
+      dispatch(clearErrors());
     }
+
     if (success) {
       alert.success("Product Created Successfully");
       history.push("/admin/dashboard");
       dispatch({ type: NEW_PRODUCT_RESET });
     }
-
   }, [dispatch, alert, error, history, success]);
 
   const createProductSubmitHandler = (e) => {
@@ -60,6 +60,7 @@ const NewProduct = ({history}) => {
     myForm.set("description", description);
     myForm.set("category", category);
     myForm.set("Stock", Stock);
+
     images.forEach((image) => {
       myForm.append("images", image);
     });
@@ -92,14 +93,15 @@ const NewProduct = ({history}) => {
       <div className="dashboard">
         <SideBar />
         <div className="newProductContainer">
-          <form 
+          <form
             className="createProductForm"
             encType="multipart/form-data"
             onSubmit={createProductSubmitHandler}
           >
             <h1>Create Product</h1>
+
             <div>
-              <SpellcheckIcon/>
+              <SpellcheckIcon />
               <input
                 type="text"
                 placeholder="Product Name"
@@ -109,25 +111,30 @@ const NewProduct = ({history}) => {
               />
             </div>
             <div>
-              <AttachMoneyIcon/>
-              <input 
-                type="number" placeholder="Price"
+              <AttachMoneyIcon />
+              <input
+                type="number"
+                placeholder="Price"
                 required
                 onChange={(e) => setPrice(e.target.value)}
               />
             </div>
+
             <div>
               <DescriptionIcon />
-              <textarea 
+
+              <textarea
                 placeholder="Product Description"
+                value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 cols="30"
                 rows="1"
               ></textarea>
             </div>
+
             <div>
               <AccountTreeIcon />
-              <select onChange= {(e) => setCategory(e.target.value)}>
+              <select onChange={(e) => setCategory(e.target.value)}>
                 <option value="">Choose Category</option>
                 {categories.map((cate) => (
                   <option key={cate} value={cate}>
@@ -136,10 +143,12 @@ const NewProduct = ({history}) => {
                 ))}
               </select>
             </div>
+
             <div>
-              <StorageIcon/>
-              <input 
-                type="number" placeholder="Stock"
+              <StorageIcon />
+              <input
+                type="number"
+                placeholder="Stock"
                 required
                 onChange={(e) => setStock(e.target.value)}
               />
@@ -156,7 +165,7 @@ const NewProduct = ({history}) => {
             </div>
 
             <div id="createProductFormImage">
-              {imagesPreview.map((image,index) => (
+              {imagesPreview.map((image, index) => (
                 <img key={index} src={image} alt="Product Preview" />
               ))}
             </div>

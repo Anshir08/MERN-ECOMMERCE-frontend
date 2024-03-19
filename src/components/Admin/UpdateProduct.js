@@ -16,13 +16,16 @@ import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import SideBar from "./Sidebar";
 import { UPDATE_PRODUCT_RESET } from "../../constants/productConstants";
 
-const UpdateProduct = ({ history, match}) => {
+const UpdateProduct = ({ history, match }) => {
   const dispatch = useDispatch();
   const alert = useAlert();
-  const {error, product} = useSelector((state) => state.productDetails);
+
+  const { error, product } = useSelector((state) => state.productDetails);
 
   const {
-    loading, error: updateError, isUpdated,
+    loading,
+    error: updateError,
+    isUpdated,
   } = useSelector((state) => state.product);
 
   const [name, setName] = useState("");
@@ -57,23 +60,22 @@ const UpdateProduct = ({ history, match}) => {
       setStock(product.Stock);
       setOldImages(product.images);
     }
-
     if (error) {
-      alert.error(error)
+      alert.error(error);
       dispatch(clearErrors());
     }
 
     if (updateError) {
-      alert.error(error);
+      alert.error(updateError);
       dispatch(clearErrors());
     }
 
     if (isUpdated) {
       alert.success("Product Updated Successfully");
       history.push("/admin/products");
-      dispatch({type: UPDATE_PRODUCT_RESET});
+      dispatch({ type: UPDATE_PRODUCT_RESET });
     }
-  },[
+  }, [
     dispatch,
     alert,
     error,
@@ -124,13 +126,17 @@ const UpdateProduct = ({ history, match}) => {
 
   return (
     <Fragment>
-      <MetaData title="Create Product"/>
+      <MetaData title="Create Product" />
       <div className="dashboard">
         <SideBar />
         <div className="newProductContainer">
-          <form className="createProductForm" encType="multipart/form-data" onSubmit={updateProductSubmitHandler}
+          <form
+            className="createProductForm"
+            encType="multipart/form-data"
+            onSubmit={updateProductSubmitHandler}
           >
             <h1>Update Product</h1>
+
             <div>
               <SpellcheckIcon />
               <input
