@@ -13,7 +13,7 @@ import { Country, State } from "country-state-city";
 import { useAlert } from "react-alert";
 import CheckoutSteps from "../Cart/CheckoutSteps";
 
-const Shipping = ({history}) => {
+const Shipping = ({ history }) => {
   const dispatch = useDispatch();
   const alert = useAlert();
   const { shippingInfo } = useSelector((state) => state.cart);
@@ -22,7 +22,7 @@ const Shipping = ({history}) => {
   const [city, setCity] = useState(shippingInfo.city);
   const [state, setState] = useState(shippingInfo.state);
   const [country, setCountry] = useState(shippingInfo.country);
-  const [pinCode, setPinCode] = useState(shippingInfo.pinCode);
+  const [pincode, setPinCode] = useState(shippingInfo.pincode);
   const [phoneNo, setPhoneNo] = useState(shippingInfo.phoneNo);
 
   const shippingSubmit = (e) => {
@@ -33,7 +33,7 @@ const Shipping = ({history}) => {
       return;
     }
     dispatch(
-      saveShippingInfo({address, city, state, country, pinCode, phoneNo})
+      saveShippingInfo({ address, city, state, country, pincode, phoneNo })
     );
     history.push("/order/confirm");
   };
@@ -81,7 +81,7 @@ const Shipping = ({history}) => {
                 type="number"
                 placeholder="Pin Code"
                 required
-                value={pinCode}
+                value={pincode}
                 onChange={(e) => setPinCode(e.target.value)}
               />
             </div>

@@ -78,7 +78,7 @@ const Payment = ({history}) => {
               line1: shippingInfo.address,
               city: shippingInfo.city,
               state:shippingInfo.state,
-              postal_code: shippingInfo.pinCode,
+              postal_code: shippingInfo.pincode,
               country: shippingInfo.country,
             },
           },
@@ -112,7 +112,7 @@ const Payment = ({history}) => {
   useEffect(() => {
     if (error) {
       alert.error(error);
-      dispatch(clearErrors);
+      dispatch(clearErrors());
     }
   }, [dispatch, error, alert]);
 
