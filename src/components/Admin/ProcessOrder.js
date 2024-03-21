@@ -27,7 +27,7 @@ const ProcessOrder = ({ history, match }) => {
 
     myForm.set("status", status);
 
-    dispatchEvent(updateOrder(match.params.id, myForm));
+    dispatch(updateOrder(match.params.id, myForm));
   };
 
   const dispatch = useDispatch();
